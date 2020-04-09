@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="_css/estilo2.css" rel="stylesheet">
+
+</head>
+<body>
+<main>
+    <header >
+        <img src="_css/header11.jpg">
+    </header>
+
+    <nav id="menu">
+
+        <ul>
+            <li><a href="paginaPrincipal.html"><i class="material-icons">home</i></a></li>
+            <li><a href="paginaHTTP.html">HTTP</a></li>
+            <li><a href="paginaHTML.html">HTML</a></li>
+            <li><a href="paginaCSS.html">CSS</a></li>
+            <li><a href="paginaFORM.html">FORM</a></li>
+        </ul>
+    </nav>
+    <div id="principal">
+        <h1 style="font-size: 40px">Entendendo um pouco mais sobre o protocolo HTTP</h1>
+        <p>
+            Hypertext Transfer Protocol (HTTP) é o método utilizado para enviar e receber informações na web. A versão mais utilizada atualmente é a 1.1, definida pela especificação RFC 2616. Embora esta especificação devesse ser leitura obrigatória para todo desenvolvedor web, muitos nem sabem como ela se parece. Tal desconhecimento ficou bastante claro quando, na época do lançamento do Google Web Accelerator (GWA), muitas informações começaram a ser excluídas. O GWA tem um princípio muito simples: ele acessa cada um dos links de uma determinado endereço sem se preocupar — e como iria saber? — com as consequências de tal acesso para fazer cache das informações e, então, exibí-las de um arquivo local quando forem solicitadas. Perda de informações como esta poderia ter sido evitada se a especificação HTTP fosse seguida da maneira como foi originalmente projetada.
+
+            O protocolo HTTP é baseado em requisições e respostas entre clientes e servidores. O cliente — navegador ou dispositivo que fará a requisição; também é conhecido como user agent — solicita um determinado recurso (resource), enviando um pacote de informações contendo alguns cabeçalhos (headers) a um URI ou, mais especificamente, URL. O servidor recebe estas informações e envia uma resposta, que pode ser um recurso ou um simplesmente um outro cabeçalho.
+
+            Se você utilizar um programa para visualizar os cabeçalhos de uma requisição — conhecidos como sniffers — na URL http://spesa.com.br, poderá ver algo semelhante a isto.
+        </p>
+        <pre>
+            <code class="codehttp">
+                GET / HTTP/1.1
+                Host: spesa.com.br
+                User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US) Gecko/20061201 Firefox/2.0.0.3 (Ubuntu-feisty)
+                Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png
+                Accept-Language: en-us,en;q=0.5
+                Accept-Encoding: gzip,deflate
+                Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+                Keep-Alive: 300
+                Connection: keep-alive
+            </code>
+        </pre>
+        <p>
+            Segundo este cabeçalho, estamos enviando algumas informações que identificam nosso cliente no caminho (path) / e, o mais importante, qual o método da requisição. O servidor, por sua vez, identifica os cabeçalhos que lhe são convenientes e envia uma resposta. Neste exemplo, recebemos os cabeçalhos de resposta, além de todo o conteúdo HTML da página inicial do Spesa.
+        </p>
+        <pre>
+            <code class="codehttp">
+                HTTP/1.x 200 OK
+                Date: Fri, 04 May 2007 16:05:43 GMT
+                Server: Apache/2.0.59 (Unix) mod_ssl/2.0.59 OpenSSL/0.9.7a DAV/2    PHP/4.4.4 mod_bwlimited/1.4
+                Cache-Control: no-cache
+                Keep-Alive: timeout=3, max=100
+                Connection: Keep-Alive
+                Transfer-Encoding: chunked
+                Content-Type: text/html; charset=iso-8859-1
+            </code>
+        </pre>
+        <p>
+            Nos cabeçalhos de resposta, você pode obter algumas informações muito importantes, dentre elas o código de resposta (Status). Este código identifica se uma requisição foi concluída com sucesso (200) ou se ela não existe (404), por exemplo, mas existem muitos outros.
+        </p>
+        <h3>Métodos HTTP</h3>
+        <h4>GET</h4>
+        <p>
+            Solicita a representação de um determinado recurso. É definido como um método seguro e não deve ser usado para disparar uma ação (remover um usuário, por exemplo).
+        </p>
+        <h4>POST</h4>
+        <p>
+            As informações enviadas no corpo (body) da requisição são utilizadas para criar um novo recurso. Também é responsável por fazer processamentos que não são diretamente relacionados a um recurso.
+        </p>
+        <h4>DELETE</h4>
+        <p>
+            Remove um recurso. Deve retornar o status 204 caso não exista nenhum recurso para a URI especificada.
+        </p>
+        <h4>PUT</h4>
+        <p>
+            Atualiza um recurso na URI especificada. Caso o recurso não exista, ele pode criar um. A principal diferenteça entre POST e PUT é que o primeiro pode lidar não somente com recursos, mas pode fazer processamento de informações, por exemplo.
+        </p>
+        <h4>HEAD</h4>
+        <p>
+            Retorna informações sobre um recurso. Na prática, funciona semelhante ao método GET, mas sem retornar o recurso no corpo da requisição. Também é considerado um método seguro.
+        </p>
+
+        <p>
+            Os outros métodos disponíveis são OPTIONS, TRACE e CONNECT. Em teoria, os servidores devem implementar os métodos GET e HEAD e, sempre que possível, o método OPTIONS.
+        </p>
+    </div>
+    <footer>
+        <ul>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Email <code style="color: #9319d2;padding: initial">blabla@penção.sempre.gov</code></a></li>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Tel contato: <code style="color: #9319d2;padding: initial"> 950505050</code></a></li>
+        </ul>
+        <p style="font-size: 20px;font-family: monospace;    margin-left: 400px; margin-top: 150px;">© 2018 Copyright Jorge:</p>
+    </footer>
+</main>
+</body>
+</html>
